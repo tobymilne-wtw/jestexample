@@ -21,25 +21,3 @@ exports[`AppComponent render correctly 1`] = `
   </main><router-outlet />
 </app-root>
 `;
-
-exports[`AppComponent should render correctly 1`] = `
-<app-root
-  title={[Function String]}
->
-  <main
-    class="main"
-  >
-    <app-todolist>
-      <div>
-        No Data
-      </div>
-      <button>
-        Refresh
-      </button>
-      <button>
-        Add
-      </button>
-    </app-todolist>
-  </main><router-outlet />
-</app-root>
-`;
