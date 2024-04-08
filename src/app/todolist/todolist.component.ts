@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, OnInit } from '@angular/core';
 import { Todo } from '../../store/todo.model';
 import { AppState } from '../../store/store';
 import { Store } from '@ngrx/store';
@@ -15,17 +15,16 @@ import { toSignal } from '@angular/core/rxjs-interop'
   styleUrl: './todolist.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodolistComponent {
+export class TodolistComponent implements OnInit {
   todos$: Signal<Todo[] | undefined>;
   isLoading$: Signal<boolean | undefined>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(public store: Store<AppState>) {
     this.todos$ = toSignal(this.store.select(todoSelector)); // observable converted to signal
     this.isLoading$ = toSignal(this.store.select((state) => state.todo.loading));
-    this.loadTodos();
   }
 
-  loadTodos() {
+  ngOnInit() {
     this.store.dispatch(TodoActions.loadTodos());
   }
 

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoListComponent render correctly 1`] = `
+<app-todolist
+  isLoading$={[Function Function]}
+  store={[Function _MockStore]}
+  todos$={[Function Function]}
+>
+  <ul>
+    <li>
+       1 description 1 - Pending 
+      <button>
+         complete 
+      </button>
+    </li>
+  </ul><button>
+    Refresh
+  </button><button>
+    Add
+  </button>
+</app-todolist>
+`;
+
+exports[`TodoListComponent should render correctly 1`] = `
+<app-todolist
+  isLoading$={[Function Function]}
+  store={[Function _MockStore]}
+  todos$={[Function Function]}
+>
+  <ul>
+    <li>
+       1 description 1 - Pending 
+      <button>
+         complete 
+      </button>
+    </li>
+  </ul><button>
+    Refresh
+  </button><button>
+    Add
+  </button>
+</app-todolist>
+`;

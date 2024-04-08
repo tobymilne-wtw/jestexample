@@ -1,12 +1,11 @@
-import {cold, hot, time} from 'jest-marbles';
+import {cold, hot } from 'jest-marbles';
 import { TodoEffects } from './effect';
 import { Actions } from '@ngrx/effects';
 import { ToDoService } from './service';
 import { TodoActions } from './action';
-import { of } from 'rxjs';
 
 describe('store/effect', () => {
-    it('should emit load success if service returns ok', () => {
+    test('emit load success if service returns ok', () => {
 
         const todos = [ { id: 1, description: 'test', completed: false }]
 
@@ -24,7 +23,7 @@ describe('store/effect', () => {
         
     });
 
-    it('should emit load success twice if actioned twice', () => {
+    test('emit load success twice if actioned twice', () => {
 
         const todos = [ { id: 1, description: 'test', completed: false }]
 
@@ -42,7 +41,7 @@ describe('store/effect', () => {
         
     });
 
-    it('should emit load success twice if actioned twice grouped', () => {
+    test('emit load success twice if actioned twice grouped', () => {
 
         const todos = [ { id: 1, description: 'test', completed: false }]
 
@@ -60,7 +59,7 @@ describe('store/effect', () => {
         
     });
 
-    it('should emit load failed if service returns error', () => {
+    test('emit load failed if service returns error', () => {
 
         const service =  new ToDoService();
 
