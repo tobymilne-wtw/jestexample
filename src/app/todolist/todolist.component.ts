@@ -25,6 +25,10 @@ export class TodolistComponent implements OnInit {
   }
 
   ngOnInit() {
+   this.loadTodos();
+  }
+
+  loadTodos() {
     this.store.dispatch(TodoActions.loadTodos());
   }
 
