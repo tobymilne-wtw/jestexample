@@ -13,13 +13,13 @@ describe('store/effect', () => {
 
         service.getAll = jest.fn(() => cold('-s|', { s: todos }));
         
-        const actions = hot('-a', { a:  TodoActions.loadTodos });
+        const actionStream = hot('-a', { a:  TodoActions.loadTodos });
 
-        const expected = cold('--b', { b: TodoActions.loadTodosSuccess({ todos: todos })});
+        const effectOutput = cold('--b', { b: TodoActions.loadTodosSuccess({ todos: todos })});
 
-        const addTodo = new TodoEffects(new Actions(actions),service);
+        const effects = new TodoEffects(new Actions(actionStream),service);
 
-        expect(addTodo.loadTodos$).toBeObservable(expected);
+        expect(effects.loadTodos).toBeObservable(effectOutput);
         
     });
 
@@ -31,13 +31,13 @@ describe('store/effect', () => {
 
         service.getAll = jest.fn(() => cold('-s|', { s: todos }));
         
-        const actions = hot('-a-a', { a:  TodoActions.loadTodos });
+        const actionStream = hot('-a-a', { a:  TodoActions.loadTodos });
 
-        const expected = cold('--b-b', { b: TodoActions.loadTodosSuccess({ todos: todos })});
+        const effectOutput = cold('--b-b', { b: TodoActions.loadTodosSuccess({ todos: todos })});
 
-        const addTodo = new TodoEffects(new Actions(actions),service);
+        const effects = new TodoEffects(new Actions(actionStream),service);
 
-        expect(addTodo.loadTodos$).toBeObservable(expected);
+        expect(effects.loadTodos).toBeObservable(effectOutput);
         
     });
 
@@ -49,13 +49,13 @@ describe('store/effect', () => {
 
         service.getAll = jest.fn(() => cold('-s|', { s: todos }));
         
-        const actions = hot('-(aa)', { a:  TodoActions.loadTodos });
+        const actionStream = hot('-(aa)', { a:  TodoActions.loadTodos });
 
-        const expected = cold('--(bb)', { b: TodoActions.loadTodosSuccess({ todos: todos })});
+        const effectOutput = cold('--(bb)', { b: TodoActions.loadTodosSuccess({ todos: todos })});
 
-        const addTodo = new TodoEffects(new Actions(actions),service);
+        const effects = new TodoEffects(new Actions(actionStream),service);
 
-        expect(addTodo.loadTodos$).toBeObservable(expected);
+        expect(effects.loadTodos).toBeObservable(effectOutput);
         
     });
 
@@ -67,13 +67,13 @@ describe('store/effect', () => {
 
         service.getAll = jest.fn(() => cold('-#|', { },{message: error}));
         
-        const actions = hot('-a', { a:  TodoActions.loadTodos });
+        const actionStream = hot('-a', { a:  TodoActions.loadTodos });
 
-        const expected = cold('--b', { b: TodoActions.loadTodosFailure({ error: error })});
+        const effectOutput = cold('--b', { b: TodoActions.loadTodosFailure({ error: error })});
 
-        const addTodo = new TodoEffects(new Actions(actions),service);
+        const effects = new TodoEffects(new Actions(actionStream),service);
 
-        expect(addTodo.loadTodos$).toBeObservable(expected);
+        expect(effects.loadTodos).toBeObservable(effectOutput);
         
     });
 });
